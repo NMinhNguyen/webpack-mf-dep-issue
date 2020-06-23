@@ -1,5 +1,24 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## webpack 5.0.0-beta.18 issue
+
+Apologies for a not-so-minimal repro (this uses a [fork](https://github.com/duplotech/create-react-app/commits/publish/webpack-5) of Create React App with experimental webpack 5 support).
+
+To reproduce the issue, follow these steps:
+
+1. `yarn` to install dependencies.
+1. `yarn start`. You should see a working page open in your browser. Although sometimes you may see HMR issues.
+1. Stop the dev server.
+1. `yarn start`. Now you should see a blank screen.
+
+From my own investigation (diffing `main.js` bundles from first and second compilations), it seems like an additional entry `webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react` is being added to `deferredModules` but I can't tell why. This causes `src/index.js` to not execute, hence the blank screen.
+
+Additionally, adding `eager: true` to `react` and `react-dom` doesn't make a difference.
+
+Downgrading to `webpack@5.0.0-beta.17` solves this issue.
+
+_Note: it appears that `rm -rf node_modules/.cache` helps to get a successful compilation (without the additional entry in `deferredModules`)._
+
 ## Available Scripts
 
 In the project directory, you can run:
