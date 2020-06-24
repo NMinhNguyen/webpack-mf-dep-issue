@@ -1,4 +1,5 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const { dependencies } = require('./package.json');
 
 module.exports = function override(config, env) {
   config.plugins.unshift(
@@ -9,12 +10,21 @@ module.exports = function override(config, env) {
       exposes: {
         './App': './src/App',
       },
-      shared: [
-        '@material-ui/styles/esm/StylesProvider',
-        '@material-ui/styles/esm/useTheme/ThemeContext',
-        { react: { singleton: true } },
-        { 'react-dom': { singleton: true } },
-      ],
+      shared: {
+        ...dependencies,
+        // '@material-ui/styles/esm/StylesProvider',
+        // '@material-ui/styles/esm/useTheme/ThemeContext',
+        react: {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies.react,
+        },
+        'react-dom': {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies['react-dom'],
+        },
+      },
     }),
   );
 
