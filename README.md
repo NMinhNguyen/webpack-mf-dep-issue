@@ -11,7 +11,7 @@ To reproduce the issue, follow these steps:
 1. Stop the dev server.
 1. `yarn start`. Now you should see a blank screen.
 
-From my own investigation (diffing `main.js` bundles from first and second compilations), it seems like an additional entry `webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react` is being added to `deferredModules` but I can't tell why. This causes `src/index.js` to not execute, hence the blank screen.
+From my own investigation ([diffing](https://github.com/NMinhNguyen/webpack-mf-dep-issue/commit/b91a02c54a40c11fca72055b47e90beb2be170e2) `main.js` bundles from first and second compilations), it seems like an additional entry `webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react` is being added to `deferredModules` but I can't tell why. This causes `src/index.js` to not execute, hence the blank screen.
 
 Additionally, adding `eager: true` to `react` and `react-dom` doesn't make a difference.
 
