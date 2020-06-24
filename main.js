@@ -20,6 +20,9 @@
               "vendors-node_modules_material-ui_core_esm_CssBaseline_CssBaseline_js-node_modules_css-loader_-c01436"
             ),
             __webpack_require__.e(
+              "webpack_sharing_consume_default_react_react"
+            ),
+            __webpack_require__.e(
               "src_bootstrap_js-webpack_sharing_consume_default_react_react"
             ),
           ]
@@ -160,7 +163,7 @@
   })(); /* webpack/runtime/getFullHash */
   /******/
   /******/ /******/ (() => {
-    /******/ __webpack_require__.h = () => "d15d82cefa2cff3aedbd";
+    /******/ __webpack_require__.h = () => "a4a1f0c02c0954e9c8a0";
     /******/
   })(); /* webpack/runtime/global */
   /******/
@@ -359,10 +362,42 @@
         /******/
       };
       /******/ var promises = [];
-      /******/ switch (
-        name
+      /******/ switch (name) {
+        /******/ case "default":
+          {
+            /******/ register("react-dom", [16, 13, 1], () =>
+              Promise.all([
+                __webpack_require__.e(
+                  "vendors-node_modules_react-dom_index_js"
+                ),
+                __webpack_require__.e(
+                  "webpack_sharing_consume_default_react_react"
+                ),
+                __webpack_require__.e(
+                  "node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_d0f7-_65711"
+                ),
+              ]).then(() => () =>
+                __webpack_require__(
+                  /*! ./node_modules/react-dom/index.js */ "./node_modules/react-dom/index.js"
+                )
+              )
+            );
+            /******/ register("react", [16, 13, 1], () =>
+              Promise.all([
+                __webpack_require__.e("vendors-node_modules_react_index_js"),
+                __webpack_require__.e(
+                  "node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_d0f7-_65710"
+                ),
+              ]).then(() => () =>
+                __webpack_require__(
+                  /*! ./node_modules/react/index.js */ "./node_modules/react/index.js"
+                )
+              )
+            );
+            /******/
+          }
+          /******/ break;
         /******/
-      ) {
       }
       /******/ return (
         promises.length &&
@@ -1012,6 +1047,21 @@
     };
     /******/ var installedModules = {};
     /******/ var moduleToHandlerMapping = {
+      /******/ "webpack/sharing/consume/default/react/react?0085": () =>
+        loadSingletonVersionCheckFallback(
+          "default",
+          "react",
+          ["16", 13, 1],
+          () =>
+            Promise.all([
+              __webpack_require__.e("vendors-node_modules_react_index_js"),
+              __webpack_require__.e(
+                "node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_d0f7-_65710"
+              ),
+            ]).then(() => () =>
+              __webpack_require__(/*! react */ "./node_modules/react/index.js")
+            )
+        ),
       /******/ "webpack/sharing/consume/default/react-dom/react-dom": () =>
         loadSingletonVersionCheckFallback(
           "default",
@@ -1025,21 +1075,6 @@
                   /*! react-dom */ "./node_modules/react-dom/index.js"
                 )
               )
-        ),
-      /******/ "webpack/sharing/consume/default/react/react?0085": () =>
-        loadSingletonVersionCheckFallback(
-          "default",
-          "react",
-          ["16", 13, 1],
-          () =>
-            Promise.all([
-              __webpack_require__.e("vendors-node_modules_react_index_js"),
-              __webpack_require__.e(
-                "node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js"
-              ),
-            ]).then(() => () =>
-              __webpack_require__(/*! react */ "./node_modules/react/index.js")
-            )
         ),
       /******/ "webpack/sharing/consume/default/react/react?d5a5": () =>
         loadSingletonVersionCheckFallback(
@@ -1058,9 +1093,12 @@
       /******/
     }; // no consumes in initial chunks
     /******/ /******/ var chunkMapping = {
+      /******/ webpack_sharing_consume_default_react_react: [
+        /******/ "webpack/sharing/consume/default/react/react?0085",
+        /******/
+      ],
       /******/ "src_bootstrap_js-webpack_sharing_consume_default_react_react": [
         /******/ "webpack/sharing/consume/default/react-dom/react-dom",
-        /******/ "webpack/sharing/consume/default/react/react?0085",
         /******/ "webpack/sharing/consume/default/react/react?d5a5",
         /******/
       ],
@@ -1123,14 +1161,17 @@
       /******/ [
         "./node_modules/@duplotech/react-dev-utils/webpackHotDevClient.js",
         "vendors-node_modules_duplotech_react-dev-utils_webpackHotDevClient_js-node_modules_webpack_ho-b8d153",
+        "webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react",
       ],
       /******/ [
         "./src/index.js",
         "vendors-node_modules_duplotech_react-dev-utils_webpackHotDevClient_js-node_modules_webpack_ho-b8d153",
+        "webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react",
       ],
       /******/ [
         "./node_modules/webpack/hot/dev-server.js",
         "vendors-node_modules_duplotech_react-dev-utils_webpackHotDevClient_js-node_modules_webpack_ho-b8d153",
+        "webpack_sharing_provide_default_react-dom-webpack_sharing_provide_default_react",
       ],
       /******/
     ];
@@ -1150,8 +1191,11 @@
           /******/ promises.push(installedChunkData[2]);
           /******/
         } else {
-          /******/ if (true) {
-            // all chunks have JS
+          /******/ if (
+            !/^webpack_sharing_(consume_default_reac|provide_default_react\-dom\-webpack_sharing_provide_defaul)t_react$/.test(
+              chunkId
+            )
+          ) {
             /******/ // setup Promise in chunk cache
             /******/ var promise = new Promise((resolve, reject) => {
               /******/ installedChunkData = installedChunks[chunkId] = [
