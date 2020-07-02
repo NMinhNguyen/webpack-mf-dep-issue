@@ -11,14 +11,12 @@ module.exports = function override(config, env) {
       exposes: {
         './App': './src/App',
       },
-      shared: [
-        { '@material-ui/styles/esm/StylesProvider': { singleton: true } },
-        {
-          '@material-ui/styles/esm/useTheme/ThemeContext': { singleton: true },
-        },
-        { react: { singleton: true } },
-        { 'react-dom': { singleton: true } },
-      ],
+      shared: {
+        '@material-ui/styles/esm/StylesProvider': { singleton: true },
+        '@material-ui/styles/esm/useTheme/ThemeContext': { singleton: true },
+        react: { singleton: true },
+        'react-dom': { singleton: true },
+      },
     }),
   );
 
