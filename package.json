@@ -14,10 +14,10 @@
   "devDependencies": {
     "react-dev-utils": "npm:@duplotech/react-dev-utils",
     "react-app-rewired": "^2.1.6",
-    "webpack": "5.0.0-beta.18"
+    "webpack": "5.0.0-beta.16"
   },
   "resolutions": {
-    "webpack": "5.0.0-beta.18"
+    "webpack": "5.0.0-beta.16"
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version @duplotech/react-scripts",
