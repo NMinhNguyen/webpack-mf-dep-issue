@@ -9,13 +9,15 @@ module.exports = function override(config, env) {
       library: { type: 'var', name: 'app1' },
       filename: 'remoteEntry.js',
       exposes: {
-        App: './src/App',
+        './App': './src/App',
       },
       shared: [
-        '@material-ui/styles/esm/StylesProvider',
-        '@material-ui/styles/esm/useTheme/ThemeContext',
-        'react',
-        'react-dom',
+        { '@material-ui/styles/esm/StylesProvider': { singleton: true } },
+        {
+          '@material-ui/styles/esm/useTheme/ThemeContext': { singleton: true },
+        },
+        { react: { singleton: true } },
+        { 'react-dom': { singleton: true } },
       ],
     }),
   );
